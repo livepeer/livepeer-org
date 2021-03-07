@@ -3,7 +3,14 @@ import { Box, Link as A, Grid, Heading, Text } from "theme-ui";
 import LivepeerIconSvg from "components/svgs/icons/livepeer";
 import sectionEffect from "lib/animations/section-effect";
 
-const MissionSection = () => {
+const MissionSection = ({
+  intro,
+  text1,
+  text2,
+  text3,
+  missionPart1,
+  missionPart2,
+}) => {
   const sectionRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -49,58 +56,54 @@ const MissionSection = () => {
               color: "background",
               mb: 1,
             }}>
-            The Livepeer.org
+            {missionPart1}
           </Heading>
           <Heading
             variant="heading.2"
             sx={{ textAlign: ["center", null, "left"], mb: 3 }}>
-            Mission
+            {missionPart2}
           </Heading>
           <Heading
             variant="heading.5"
             sx={{ textAlign: ["center", null, "left"], color: "lightGray" }}>
-            The purpose of Livepeer.org is to be the best portal to Livepeer for
-            its participants and users.
+            {intro}
           </Heading>
         </Box>
         <Box sx={{ zIndex: "general", position: "relative" }}>
           <Text variant="normal" sx={{ mb: 4 }}>
-            Through the power of open source software, the harnessing of
-            underutilized resources like compute and bandwidth, and the use of
-            cryptoeconomic incentives for bootstrapping and participation, there
-            is an opportunity to deliver an infrastructure that can power video
-            streaming applications at a highly efficient price, and infinite
-            scale.
+            {text1}
           </Text>
           <Text variant="normal" sx={{ mb: 4 }}>
-            Along with the proliferation of high quality cameras and ubiquitous
-            bandwidth, the belief is that this will enable video applications to
-            be created that were never before possible under traditional,
-            centralized cost structures, which unlock communications, economic
-            opportunity, and entertainment for society going forward.
+            {text2}
           </Text>
           <Text variant="normal">
-            By providing the best possible portal to Livepeer, we hope to help
-            capture this opportunity and fulfill the project’s mission as laid
-            out in the original{" "}
-            <A
-              href="https://github.com/livepeer/wiki/blob/master/WHITEPAPER.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="accent"
-              data-dark>
-              whitepaper
-            </A>{" "}
-            and{" "}
-            <A
-              href="https://github.com/livepeer/wiki/blob/master/GOVERNANCE-FOUNDERS-STATEMENT.md"
-              target="_blank"
-              rel="noopener noreferrer"
-              variant="accent"
-              data-dark>
-              founder’s statement
-            </A>{" "}
-            — to <b>build the world’s open video infrastructure</b>.
+            {text3 ? (
+              text3
+            ) : (
+              <>
+                By providing the best possible portal to Livepeer, we hope to
+                help capture this opportunity and fulfill the project’s mission
+                as laid out in the original{" "}
+                <A
+                  href="https://github.com/livepeer/wiki/blob/master/WHITEPAPER.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="accent"
+                  data-dark>
+                  whitepaper
+                </A>{" "}
+                and{" "}
+                <A
+                  href="https://github.com/livepeer/wiki/blob/master/GOVERNANCE-FOUNDERS-STATEMENT.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  variant="accent"
+                  data-dark>
+                  founder’s statement
+                </A>{" "}
+                — to <b>build the world’s open video infrastructure</b>.
+              </>
+            )}
           </Text>
         </Box>
       </Grid>

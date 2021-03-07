@@ -75,12 +75,12 @@ const links: IconLinkProps[] = [
   },
 ];
 
-const CommunitySection = ({ title = "Join the Livepeer Community" }) => (
+const CommunitySection = ({ title, subtitle, label }) => (
   <SectionLayout
     background="muted"
     title={title}
-    titleLabel="Livepeer Communities"
-    subtitle="Livepeer is an open project that believes in open source code and creative contribution from people with diverse interests and skillsets. Join us."
+    titleLabel={label}
+    subtitle={subtitle}
     pushSx={{ pt: "160px" }}>
     <Grid
       columns={"repeat(3, 372px)"}

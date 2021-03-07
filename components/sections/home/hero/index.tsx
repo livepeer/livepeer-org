@@ -7,7 +7,7 @@ import VideoSwapper from "./video-swapper";
 import GlobeDot from "./globe-dots";
 import Divider from "components/primitives/divider";
 
-const HomeHero = () => {
+const HomeHero = ({ title, subtitle, cta, videoLabel }) => {
   const [globeDotIndex, setGlobeDotIndex] = useState(0);
   const animationTimelineRef = useRef<gsap.core.Timeline>();
   const videoBoxRef = useRef<HTMLDivElement>(null);
@@ -106,33 +106,38 @@ const HomeHero = () => {
               position: "relative",
             }}>
             <Heading sx={{ variant: ["text.heading.2", "text.heading.1"] }}>
-              The&nbsp;
-              <Text
-                as="span"
-                sx={{
-                  pr: ["2px", "4px"], // Fix text being clipped
-                  background: ({ colors }) =>
-                    `linear-gradient(90deg, #00A55F 0%, ${colors.gradient.mid} 100%)`,
-                  variant: "text.gradientBase",
-                }}>
-                World's
-              </Text>{" "}
-              <Text
-                as="span"
-                sx={{
-                  background: ({ colors }) =>
-                    `linear-gradient(90deg, ${colors.gradient.mid} 0%, #4CF1AC 100%)`,
-                  variant: "text.gradientBase",
-                }}>
-                Open&nbsp;
-              </Text>
-              <br sx={{ display: ["none", null, "block"] }} />
-              Video Infrastructure
+              {title ? (
+                title
+              ) : (
+                <>
+                  The&nbsp;
+                  <Text
+                    as="span"
+                    sx={{
+                      pr: ["2px", "4px"], // Fix text being clipped
+                      background: ({ colors }) =>
+                        `linear-gradient(90deg, #00A55F 0%, ${colors.gradient.mid} 100%)`,
+                      variant: "text.gradientBase",
+                    }}>
+                    World's
+                  </Text>{" "}
+                  <Text
+                    as="span"
+                    sx={{
+                      background: ({ colors }) =>
+                        `linear-gradient(90deg, ${colors.gradient.mid} 0%, #4CF1AC 100%)`,
+                      variant: "text.gradientBase",
+                    }}>
+                    Open&nbsp;
+                  </Text>
+                  <br sx={{ display: ["none", null, "block"] }} />
+                  Video Infrastructure
+                </>
+              )}
             </Heading>
             <Divider isTransparent isVertical size={["12px", "16px", "24px"]} />
-            <Heading variant="section.subtitle">
-              Livepeer is a decentralized video streaming network built on{" "}
-              <br /> the Ethereum blockchain.
+            <Heading variant="section.subtitle" sx={{ maxWidth: 700 }}>
+              {subtitle}
             </Heading>
           </Box>
 
@@ -143,7 +148,7 @@ const HomeHero = () => {
               zIndex: "general",
               position: "relative",
             }}>
-            Get started
+            {cta}
           </A>
         </span>
 
@@ -219,7 +224,11 @@ const HomeHero = () => {
               overflow: "hidden",
               opacity: 0,
             }}>
-            <VideoSwapper sources={videos} onChange={onVideoChange} />
+            <VideoSwapper
+              videoLabel={videoLabel}
+              sources={videos}
+              onChange={onVideoChange}
+            />
           </div>
         </Box>
       </Container>

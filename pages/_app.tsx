@@ -6,6 +6,7 @@ import initGsap from "lib/animations";
 import * as gtag from "../lib/gtag";
 import { useEffect } from "react";
 import Router from "next/router";
+import { appWithTranslation } from "next-i18next";
 
 initGsap();
 
@@ -27,4 +28,4 @@ const App = ({ Component, pageProps }) => {
   );
 };
 
-export default App;
+export default appWithTranslation(App);

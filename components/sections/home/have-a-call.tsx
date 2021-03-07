@@ -3,24 +3,14 @@ import { Link as A, Box } from "theme-ui";
 import ImageCard from "components/primitives/cards/image";
 import KeenSliderGrid from "components/layouts/keen-slider-grid";
 
-const HaveACallSection = ({ youtubeVideos }) => (
+const HaveACallSection = ({ title, subtitle, ctaText, youtubeVideos }) => (
   <SectionLayout
-    title="Join our call"
+    title={title}
     subtitle={
       <>
-        Every month, our community catches up with each other virtually. We hear
-        about the latest updates from the core team and showcase what we’ve been
-        working on. Calls happen on the second Thursday of each month @ 12pm
-        EST.
+        {subtitle}
         <br />
-        Catch them live on{" "}
-        <A
-          variant="accent"
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://livepeer.org/tv">
-          livepeer.org/tv
-        </A>
+        {ctaText}
       </>
     }>
     <KeenSliderGrid withArrowControls>

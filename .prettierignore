@@ -3,6 +3,5 @@
 **/.next
 **/coverage
 **/dist
-**/public
 **/package.json
 **/bin

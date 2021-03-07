@@ -3,10 +3,11 @@ import { jsx, Card, Box, Heading, Text } from "theme-ui";
 import CardLink, { CardLinkProps } from "../links/card";
 import cn from "classnames";
 import Link from "next/link";
+import { ReactNode } from "react";
 
 export type IconCardProps = {
-  icon: React.ReactNode;
-  title: React.ReactNode;
+  icon: ReactNode;
+  title: ReactNode;
   description: string;
   linkProps: CardLinkProps;
   titleLabel?: string;
@@ -66,12 +67,12 @@ const IconCard = ({
             {icon}
           </i>
         </Box>
-        <Text
+        {/* <Text
           variant="heading.5"
           sx={{ textAlign: "left", mb: 1 }}
           className="title_label">
           {titleLabel}
-        </Text>
+        </Text> */}
         <Heading variant="heading.4" sx={{ textAlign: "left", mb: "24px" }}>
           {title}
         </Heading>

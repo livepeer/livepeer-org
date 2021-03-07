@@ -22,24 +22,34 @@ const images = [
   },
 ];
 
-const WhoIsBuildingSection = () => (
+const WhoIsBuildingSection = ({
+  title,
+  subtitle,
+  text,
+  ctaText1,
+  ctaText2,
+}) => (
   <SectionLayout
-    title="Who's behind Livepeer.org?"
+    title={title}
     background="muted"
     subtitle={
-      <>
-        In 2017, the founders of the Livepeer project formed a company called
-        Livepeer, Inc. to help facilitate its early development, bootstrap the
-        network’s supply and demand sides, and guide the project’s{" "}
-        <A
-          href="https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532"
-          target="_blank"
-          rel="noopener noreferrer"
-          variant="accent">
-          path to decentralization
-        </A>
-        .
-      </>
+      subtitle ? (
+        subtitle
+      ) : (
+        <>
+          In 2017, the founders of the Livepeer project formed a company called
+          Livepeer, Inc. to help facilitate its early development, bootstrap the
+          network’s supply and demand sides, and guide the project’s{" "}
+          <A
+            href="https://medium.com/livepeer-blog/livepeers-path-to-decentralization-a9267fd16532"
+            target="_blank"
+            rel="noopener noreferrer"
+            variant="accent">
+            path to decentralization
+          </A>
+          .
+        </>
+      )
     }
     pushSx={{
       display: "flex",
@@ -53,7 +63,7 @@ const WhoIsBuildingSection = () => (
       rel="noopener noreferrer"
       variant="buttons.primary"
       sx={{ display: "flex" }}>
-      Meet Livepeer, Inc.{" "}
+      {ctaText1}{" "}
       <i sx={{ ml: 2, fontSize: 4 }}>
         <FiArrowUpRight />
       </i>
@@ -74,14 +84,14 @@ const WhoIsBuildingSection = () => (
       ))}
     </Slider>
     <Heading variant="heading.5">
-      Interested in Joining Livepeer, Inc.?{" "}
+      {text}{" "}
       <A
         href="https://angel.co/company/livepeer/jobs"
         target="_blank"
         rel="noopener noreferrer"
         variant="accent"
         sx={{ variant: "layout.flexCenter", display: "inline-flex" }}>
-        View its open positions <FiArrowUpRight />
+        {ctaText2} <FiArrowUpRight />
       </A>
     </Heading>
   </SectionLayout>

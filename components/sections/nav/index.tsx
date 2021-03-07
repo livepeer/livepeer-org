@@ -17,6 +17,7 @@ import Link from "next/link";
 import TopNotification, { TopNotificationProps } from "./top-notification";
 import Menu from "components/sections/primer/Menu";
 import { useRouter } from "next/router";
+import { useTranslation } from "next-i18next";
 
 type LinkType = {
   label: string;
@@ -25,55 +26,16 @@ type LinkType = {
   asPath?: string;
 };
 
-const links: LinkType[] = [
-  {
-    label: "About",
-    href: "/about",
-  },
-  {
-    label: "Developers",
-    href: "/developers",
-  },
-  {
-    label: "Tokenholders",
-    href: "/tokenholders",
-  },
-  {
-    label: "Video Miners",
-    href: "/video-miners",
-  },
-  {
-    label: "Resources",
-    href: "/resources",
-  },
-];
-
 const navHeight = "72px";
-
-const defaultTopNotification: TopNotificationProps = {
-  title: "Introducing",
-  description: "A brand new Livepeer.org",
-  link: {
-    label: "Read post",
-    href:
-      "https://medium.com/livepeer-blog/introducing-a-brand-new-livepeer-org-3e433519b5d0",
-    isExternal: true,
-  },
-};
 
 export type NavProps = {
   isInmersive?: boolean;
   isPrimer?: boolean;
   background?: "muted" | "dark" | "white" | "black" | "translucent";
-  topNotification?: TopNotificationProps;
 };
 
-const Nav = ({
-  background,
-  isInmersive,
-  topNotification = defaultTopNotification,
-  isPrimer = false,
-}: NavProps) => {
+const Nav = ({ background, isInmersive, isPrimer = false }: NavProps) => {
+  const { t } = useTranslation(["common"]);
   const router = useRouter();
   const [hasScrolled, setHasScrolled] = useState(false);
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
@@ -91,7 +53,40 @@ const Nav = ({
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [handleScroll]);
+
+  const topNotification: TopNotificationProps = {
+    title: t("banner-top"),
+    link: {
+      label: t("read-post"),
+      href:
+        "https://medium.com/livepeer-blog/introducing-a-brand-new-livepeer-org-3e433519b5d0",
+      isExternal: true,
+    },
+  };
+
+  const links: LinkType[] = [
+    {
+      label: t("nav-about"),
+      href: "/about",
+    },
+    {
+      label: t("nav-developers"),
+      href: "/developers",
+    },
+    {
+      label: t("nav-tokenholders"),
+      href: "/tokenholders",
+    },
+    {
+      label: t("nav-video-miners"),
+      href: "/video-miners",
+    },
+    {
+      label: t("nav-resources"),
+      href: "/resources",
+    },
+  ];
 
   const isDark = background === "black" || background === "dark";
   let bg: string;
@@ -291,10 +286,10 @@ const Nav = ({
                   setMobileMenuIsOpen(false);
                   router.push("/#get-started");
                 }}>
-                Get started
+                {t("nav-get-started")}
               </Button>
               <Text sx={{ fontSize: "14px", textAlign: "center" }}>
-                © Livepeer, Inc. 2020 - All rights reserved.
+                © Livepeer, Inc. {new Date().getFullYear()}
               </Text>
             </Flex>
           </Container>

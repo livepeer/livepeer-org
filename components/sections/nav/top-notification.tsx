@@ -1,7 +1,7 @@
 import { Box, Text, Link as A } from "theme-ui";
 import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import Link from "next/link";
-import { forwardRef } from "react";
+import { forwardRef, RefObject } from "react";
 
 export type TopNotificationProps = {
   title?: string;
@@ -15,10 +15,7 @@ export type TopNotificationProps = {
 };
 
 const TopNotification = forwardRef(
-  (
-    { title, description, link }: TopNotificationProps,
-    ref: React.RefObject<HTMLDivElement>
-  ) => (
+  ({ title, link }: TopNotificationProps, ref: RefObject<HTMLDivElement>) => (
     <Box
       ref={ref}
       sx={{
@@ -30,10 +27,7 @@ const TopNotification = forwardRef(
         position: "relative",
         zIndex: "1",
       }}>
-      {title && (
-        <Text sx={{ fontWeight: 600, display: "inline" }}>{title}: </Text>
-      )}
-      {description && <Text sx={{ display: "inline" }}>{description}</Text>}
+      {title && <Text sx={{ display: "inline" }}>{title}</Text>}
       {link.isExternal ? (
         <A
           variant="accent"

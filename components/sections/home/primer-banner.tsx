@@ -3,7 +3,7 @@ import { jsx, Container, Box, Text, Heading, Link as A } from "theme-ui";
 import PrimerSvg from "components/svgs/primer";
 import Link from "next/link";
 
-const PrimerBanner = () => (
+const PrimerBanner = ({ label, title, subtitle, ctaText }) => (
   <Box sx={{ bg: "muted", px: 3, py: "80px" }}>
     <Container
       variant="section"
@@ -32,7 +32,7 @@ const PrimerBanner = () => (
             mb: 2,
             textAlign: ["center", null, null, "left"],
           }}>
-          A 10-minute Primer
+          {label}
         </Text>
         <Heading
           variant="heading.3"
@@ -40,7 +40,7 @@ const PrimerBanner = () => (
             textAlign: ["center", null, null, "left"],
             fontFamily: "body",
           }}>
-          Curious about how Livepeer works?
+          {title}
         </Heading>
         <Text
           variant="normal"
@@ -50,12 +50,10 @@ const PrimerBanner = () => (
             mb: "40px",
             textAlign: ["center", null, null, "left"],
           }}>
-          Through storytelling, illustration, and data, the Livepeer Primer
-          explains, at a high level, the problem Livepeer solves and how it
-          works.
+          {subtitle}
         </Text>
         <Link href="/primer" passHref>
-          <A variant="buttons.primary">Check it out</A>
+          <A variant="buttons.primary">{ctaText}</A>
         </Link>
       </Box>
       <Box

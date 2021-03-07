@@ -27,6 +27,7 @@
     "keen-slider": "^5.2.2",
     "next": "^10.0.7",
     "next-compose-plugins": "^2.2.1",
+    "next-i18next": "^8.1.0",
     "next-svgr": "^0.0.2",
     "next-transpile-modules": "^6.3.0",
     "react": "^16.13.1",

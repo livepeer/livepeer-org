@@ -4,10 +4,11 @@ import { useRef, useState, useCallback, useEffect } from "react";
 
 type Props = {
   sources: string[];
+  videoLabel: string;
   onChange: () => void;
 };
 
-const VideoSwapper = ({ sources, onChange }: Props) => {
+const VideoSwapper = ({ videoLabel, sources, onChange }: Props) => {
   const videosRef = useRef([]);
   const [currentVideo, setCurrentVideo] = useState(0);
   const [isInitialized, setIsInitialized] = useState(false);
@@ -64,7 +65,7 @@ const VideoSwapper = ({ sources, onChange }: Props) => {
               mr: 1,
             }}
           />
-          Live
+          LIVE
         </p>
       </span>
       <div>

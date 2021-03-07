@@ -2,6 +2,7 @@ import Head, { HeadProps } from "components/primitives/head";
 import Nav, { NavProps } from "components/sections/nav";
 import { Box, SxStyleProp } from "theme-ui";
 import Footer, { FooterProps } from "components/sections/footer";
+import { FC } from "react";
 
 type Props = {
   headProps?: HeadProps;
@@ -11,7 +12,7 @@ type Props = {
   pushContentSx?: SxStyleProp;
 };
 
-const PageLayout: React.FC<Props> = ({
+const PageLayout: FC<Props> = ({
   children,
   headProps,
   isDark,
