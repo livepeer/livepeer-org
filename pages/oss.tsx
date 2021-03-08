@@ -6,6 +6,7 @@ import PageLayout from "components/layouts/page";
 import IconHero from "components/layouts/icon-hero";
 import { FiHeart } from "react-icons/fi";
 import { HeadProps } from "components/primitives/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -74,5 +75,14 @@ const CodePage = () => (
     <GetInvolvedSection />
   </PageLayout>
 );
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "oss"])),
+    },
+    revalidate: 1,
+  };
+}
 
 export default CodePage;

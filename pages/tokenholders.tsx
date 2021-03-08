@@ -10,6 +10,7 @@ import {
   getTotalVolume,
 } from "lib/document-helpers";
 import { HeadProps } from "components/primitives/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -56,7 +57,7 @@ const TokenholdersPage = ({
   </PageLayout>
 );
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const totalActiveStake = await getTotalActiveStake();
   const totalDelegators = await getTotalDelegators();
   const totalVolume = await getTotalVolume();
@@ -66,6 +67,7 @@ export async function getStaticProps() {
       totalActiveStake,
       totalDelegators,
       totalVolume,
+      ...(await serverSideTranslations(locale, ["common", "tokenholders"])),
     },
     revalidate: 1,
   };

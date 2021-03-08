@@ -3,6 +3,7 @@ import { jsx, Heading, Text, Container, Link as A } from "theme-ui";
 import PageLayout from "components/layouts/page";
 
 import { HeadProps } from "components/primitives/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -403,5 +404,14 @@ const PrivacyPolicyPage = () => (
     </Container>
   </PageLayout>
 );
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+    revalidate: 1,
+  };
+}
 
 export default PrivacyPolicyPage;

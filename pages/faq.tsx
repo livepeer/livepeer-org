@@ -4,6 +4,7 @@ import { FiHelpCircle } from "react-icons/fi";
 import FaqsSection from "components/sections/faqs";
 import FaqHeroSvg from "components/svgs/faq-hero";
 import { HeadProps } from "components/primitives/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -30,5 +31,14 @@ const ParticipantsPage = () => (
     <FaqsSection />
   </PageLayout>
 );
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "faq"])),
+    },
+    revalidate: 1,
+  };
+}
 
 export default ParticipantsPage;

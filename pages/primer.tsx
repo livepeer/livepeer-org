@@ -19,6 +19,7 @@ import Chapter7 from "components/sections/primer/Chapter7";
 import Chapter8 from "components/sections/primer/Chapter8";
 import Chapter9 from "components/sections/primer/Chapter9";
 import Footer from "components/sections/primer/Footer";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -84,7 +85,7 @@ const Primer = ({ data }) => {
   );
 };
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const { rpc } = await LivepeerSDK({
     provider: process.env.PROVIDER,
   });
@@ -144,6 +145,7 @@ export async function getStaticProps() {
 
   return {
     props: {
+      ...(await serverSideTranslations(locale, ["common", "primer"])),
       data: {
         totalSupply,
         totalDelegators: delegators.length,

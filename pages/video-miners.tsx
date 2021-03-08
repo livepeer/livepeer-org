@@ -6,6 +6,7 @@ import RequirementsSection from "components/sections/video-miners/requirements";
 import VideoMinerHero from "components/sections/video-miners/hero";
 import { getTotalVolume } from "lib/document-helpers";
 import { HeadProps } from "components/primitives/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -29,12 +30,13 @@ const VideoMinerPage = ({ totalVolume }) => (
   </PageLayout>
 );
 
-export async function getStaticProps() {
+export async function getStaticProps({ locale }) {
   const totalVolume = await getTotalVolume();
 
   return {
     props: {
       totalVolume,
+      ...(await serverSideTranslations(locale, ["common", "video-miners"])),
     },
     revalidate: 1,
   };

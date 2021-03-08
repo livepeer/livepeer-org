@@ -4,6 +4,7 @@ import { FiBook } from "react-icons/fi";
 import ResourcesHeroSvg from "components/svgs/resources-hero";
 import ResourcesDirectory from "components/sections/resources";
 import { HeadProps } from "components/primitives/head";
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
 const headProps: HeadProps = {
   meta: {
@@ -33,5 +34,14 @@ const ResourcesPage = () => (
     <ResourcesDirectory />
   </PageLayout>
 );
+
+export async function getStaticProps({ locale }) {
+  return {
+    props: {
+      ...(await serverSideTranslations(locale, ["common", "resources"])),
+    },
+    revalidate: 1,
+  };
+}
 
 export default ResourcesPage;
