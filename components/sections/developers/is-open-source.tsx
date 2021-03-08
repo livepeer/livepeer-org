@@ -5,22 +5,6 @@ import StatsGrid from "components/layouts/stats-grid";
 import { StatProps } from "components/primitives/stat";
 import Link from "next/link";
 
-const stats: StatProps[] = [
-  {
-    title: "100+",
-    label: "Github Contributors",
-  },
-  {
-    title: "1k+",
-    label: <>Stargazers</>,
-    color: "gradient",
-  },
-  {
-    title: "12",
-    label: <>Languages</>,
-  },
-];
-
 const CoverImage = () => (
   <figure
     sx={{
@@ -49,44 +33,68 @@ const CoverImage = () => (
   </figure>
 );
 
-const IsOpenSourceSection = () => (
-  <Box sx={{ position: "relative", bg: "background" }}>
-    <CoverImage />
-    <Container
-      variant="section"
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        pt: "160px",
-        pb: [0, null, null, 5],
-      }}>
-      <Box
+const IsOpenSourceSection = ({
+  title,
+  subtitle,
+  ctaText,
+  label1,
+  label2,
+  label3,
+}) => {
+  const stats: StatProps[] = [
+    {
+      title: "100+",
+      label: label1,
+    },
+    {
+      title: "1k+",
+      label: label2,
+      color: "gradient",
+    },
+    {
+      title: "12",
+      label: label3,
+    },
+  ];
+
+  return (
+    <Box sx={{ position: "relative", bg: "background" }}>
+      <CoverImage />
+      <Container
+        variant="section"
         sx={{
-          maxWidth: "2xl",
-          mb: ["32px", "40px"],
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          pt: "160px",
+          pb: [0, null, null, 5],
         }}>
-        <Heading sx={{ variant: ["text.heading.2", "text.heading.1"] }}>
-          Livepeer is open source
-        </Heading>
-        <Divider isTransparent isVertical size={["12px", "16px", "24px"]} />
-        <Heading variant="section.subtitle" sx={{ color: "lightGray" }}>
-          There are many opportunities for designers, software engineers and
-          enthusiasts to contribute to the Livepeer ecosystem.
-        </Heading>
-        <Divider isTransparent isVertical size={["32px", "40px"]} />
-        <Link href="/oss" passHref>
-          <A variant="buttons.primary" href="/oss">
-            Explore the code
-          </A>
-        </Link>
-        <StatsGrid pushSx={{ mt: 5 }} stats={stats} />
-      </Box>
-    </Container>
-  </Box>
-);
+        <Box
+          sx={{
+            maxWidth: "2xl",
+            mb: ["32px", "40px"],
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+          }}>
+          <Heading sx={{ variant: ["text.heading.2", "text.heading.1"] }}>
+            {title}
+          </Heading>
+          <Divider isTransparent isVertical size={["12px", "16px", "24px"]} />
+          <Heading variant="section.subtitle" sx={{ color: "lightGray" }}>
+            {subtitle}
+          </Heading>
+          <Divider isTransparent isVertical size={["32px", "40px"]} />
+          <Link href="/oss" passHref>
+            <A variant="buttons.primary" href="/oss">
+              {ctaText}
+            </A>
+          </Link>
+          <StatsGrid pushSx={{ mt: 5 }} stats={stats} />
+        </Box>
+      </Container>
+    </Box>
+  );
+};
 
 export default IsOpenSourceSection;

@@ -59,12 +59,12 @@ const lines: AnimatedLineProps[] = [
   },
 ];
 
-const DevelopersHero = () => (
+const DevelopersHero = ({ title, subtitle }) => (
   <IconHero
     withAnimation
     icon={<FiPlay />}
-    title="Developers"
-    subtitle="Everything you need to build powerful video applications with Livepeer."
+    title={title}
+    subtitle={subtitle}
     illustration={
       <IllustratedBackgroundBox
         pushSx={{
