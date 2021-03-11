@@ -6,57 +6,54 @@ import {
   StakeTokenSvg,
 } from "components/svgs/tokenholder-card-headers";
 
-const cards: HugeCardProps[] = [
-  {
-    titleLabel: "Get",
-    title: "Livepeer Token",
-    listItems: [
-      "ERC-20 token available on a number of non-custodial and custodial exchanges",
-      "Originally distributed via a “Merkle Mine”, an algorithm for decentralized distribution of token during the genesis state",
-      "Inflationary  according to algorithmically programmed issuance over time",
-    ],
-    cta: {
-      label: "Exchange on Uniswap",
-      isLink: true,
-      isExternal: true,
-      href:
-        "https://app.uniswap.org/#/swap?outputCurrency=0x58b6a8a3302369daec383334672404ee733ab239",
+const GetTokenSection = ({ title, card1, card2 }) => {
+  const cards: HugeCardProps[] = [
+    {
+      titleLabel: card1.label,
+      title: card1.title,
+      listItems: card1.listItems,
+      cta: {
+        label: card1.ctaText,
+        isLink: true,
+        isExternal: true,
+        href:
+          "https://app.uniswap.org/#/swap?outputCurrency=0x58b6a8a3302369daec383334672404ee733ab239",
+      },
+      accent: "primary",
+      headerIllustration: <StakeTokenSvg />,
     },
-    accent: "primary",
-    headerIllustration: <StakeTokenSvg />,
-  },
-  {
-    titleLabel: "Stake",
-    title: "Livepeer Token",
-    listItems: [
-      "Earns you the right to perform or delegate work on the Livepeer network and vote on protocol proposals",
-      "Routes work through the network in proportion to the amount of staked and delegated token, serving as a coordination mechanism",
-      "Secures the network against a number of attacks via slashing that occurs due to protocol violation",
-    ],
-    cta: {
-      label: "Open Livepeer explorer",
-      isLink: true,
-      isExternal: true,
-      href: "https://explorer.livepeer.org",
+    {
+      titleLabel: card2.label,
+      title: card2.title,
+      listItems: card2.listItems,
+      cta: {
+        label: card2.ctaText,
+        isLink: true,
+        isExternal: true,
+        href: "https://explorer.livepeer.org",
+      },
+      accent: "secondary",
+      headerIllustration: <GetTokenSvg />,
     },
-    accent: "secondary",
-    headerIllustration: <GetTokenSvg />,
-  },
-];
-
-const GetTokenSection = () => (
-  <SectionLayout
-    title="Get token, then put it to work"
-    background="muted"
-    pushSx={{ py: ["80px", "160px"] }}>
-    <Grid
-      columns={["minmax(auto, 632px)", null, "repeat(2, minmax(auto, 632px))"]}
-      sx={{ justifyContent: "center" }}>
-      {cards.map((c) => (
-        <HugeCard key={`get-token-card-${c.titleLabel}=${c.title}`} {...c} />
-      ))}
-    </Grid>
-  </SectionLayout>
-);
+  ];
+  return (
+    <SectionLayout
+      title={title}
+      background="muted"
+      pushSx={{ py: ["80px", "160px"] }}>
+      <Grid
+        columns={[
+          "minmax(auto, 632px)",
+          null,
+          "repeat(2, minmax(auto, 632px))",
+        ]}
+        sx={{ justifyContent: "center" }}>
+        {cards.map((c) => (
+          <HugeCard key={`get-token-card-${c.titleLabel}=${c.title}`} {...c} />
+        ))}
+      </Grid>
+    </SectionLayout>
+  );
+};
 
 export default GetTokenSection;

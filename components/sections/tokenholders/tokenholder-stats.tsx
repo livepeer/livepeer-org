@@ -4,12 +4,20 @@ import StatsGrid from "components/layouts/stats-grid";
 import { nFormatter } from "lib/document-helpers";
 
 type Props = {
+  title: string;
+  label1: string;
+  label2: string;
+  label3: string;
   totalActiveStake: number;
   totalDelegators: number;
   totalVolume: number;
 };
 
 const TokenholderStatsSection = ({
+  title,
+  label1,
+  label2,
+  label3,
   totalActiveStake,
   totalDelegators,
   totalVolume,
@@ -17,23 +25,21 @@ const TokenholderStatsSection = ({
   const stats: StatProps[] = [
     {
       title: `${nFormatter(totalActiveStake, 1)}`,
-      label: <>Total LPT Staked</>,
+      label: label1,
     },
     {
       title: `${nFormatter(totalVolume, 1)} USD`,
-      label: <>Total Fees Paid Out</>,
+      label: label2,
       color: "gradient",
     },
     {
       title: totalDelegators.toString(),
-      label: <>Total Delegators</>,
+      label: label3,
     },
   ];
 
   return (
-    <SectionLayout
-      title="Tokenholder Stats"
-      pushSx={{ pt: ["80px", null, null, "160px"] }}>
+    <SectionLayout title={title} pushSx={{ pt: ["80px", null, null, "160px"] }}>
       <StatsGrid stats={stats} />
     </SectionLayout>
   );
