@@ -1,87 +1,66 @@
 /** @jsx jsx */
+import { jsx, Container, Heading, Text, Box, Link as A } from "theme-ui";
+import PrefooterSvg from "../../../svgs/prefooter";
 import Link from "next/link";
-import { jsx, Box, Heading, Link as A, Grid } from "theme-ui";
-import HowToGetStartedStep, { HowToGetStartedStepProps } from "./step";
 
-const steps: HowToGetStartedStepProps[] = [
-  {
-    children: (
-      <>
-        <A
-          variant="accent"
-          href="https://livepeer.readthedocs.io/en/latest/transcoding.html"
-          target="_blank"
-          rel="noopener noreferrer">
-          Read the docs
-        </A>{" "}
-        for transcoding on the livepeer network
-      </>
-    ),
-  },
-  {
-    children: (
-      <>
-        Check out the{" "}
-        <Link href="/faq?filter=video-miners" passHref>
-          <A variant="accent">video miner FAQ</A>
+const HowToGetStartedSection = ({ title, subtitle, ctaText }) => (
+  <Box sx={{ px: 3, pt: [4, "80px"], pb: "80px", mb: [0, "80px"] }}>
+    <Container
+      sx={{
+        bg: "text",
+        py: [4, 5],
+        px: [4, null, null, "96px"],
+        position: "relative",
+        overflow: "hidden",
+        borderRadius: "lg",
+        boxShadow: "magical",
+      }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: ["center", null, null, "flex-start"],
+          mx: ["auto", null, null, 0],
+          zIndex: "general",
+          position: "relative",
+        }}>
+        <Heading
+          variant="heading.3"
+          sx={{
+            textAlign: ["center", null, null, "left"],
+            color: "background",
+            maxWidth: "xl",
+          }}>
+          {title}
+        </Heading>
+        <Text
+          variant="normal"
+          sx={{
+            mt: "18px",
+            mb: "40px",
+            textAlign: ["center", null, null, "left"],
+            color: "lightGray",
+            maxWidth: "30ch",
+          }}>
+          {subtitle}
+        </Text>
+        <Link href="https://livepeer.readthedocs.io/" passHref>
+          <A variant="buttons.primary" target="_blank">
+            {ctaText}
+          </A>
         </Link>
-      </>
-    ),
-  },
-  {
-    children: (
-      <>
-        Reach out to the Livepeer team and community in the{" "}
-        <A
-          variant="accent"
-          href="https://discord.gg/uaPhtyrWsF"
-          target="_blank"
-          rel="noopener noreferrer">
-          Discord chat room
-        </A>
-        , #transcoding channel. Initial testing and setup can require some
-        DevOps, so we are happy to help.
-      </>
-    ),
-  },
-];
-
-const HowToGetStartedSection = () => (
-  <Box>
-    <Grid
-      variant="layout.section"
-      gap={5}
-      columns={[1, null, 2]}
-      sx={{ pt: ["80px", null, null, "160px"] }}>
-      <Box>
-        <Heading
-          variant="section.title"
-          sx={{ textAlign: ["center", null, "left"] }}>
-          How to get started
-        </Heading>
-        <Heading
-          variant="section.subtitle"
-          sx={{ textAlign: ["center", null, "left"] }}>
-          Become a video miner in three steps.
-        </Heading>
       </Box>
       <Box
         sx={{
-          ".list-item:not(:last-of-type)": {
-            mb: 2,
-          },
+          position: "absolute",
+          right: "-336px",
+          top: ["unset", null, null, "50%"],
+          bottom: ["-232px", "-190px", null, "unset"],
+          transform: ["none", null, null, "translateY(-50%)"],
         }}>
-        {steps.map((s, i, { length }) => (
-          <HowToGetStartedStep
-            key={`how-to-get-started-step-${i}`}
-            className="list-item"
-            index={i}
-            isLast={length === i + 1}
-            {...s}
-          />
-        ))}
+        <PrefooterSvg fill="primary" />
       </Box>
-    </Grid>
+    </Container>
   </Box>
 );
 

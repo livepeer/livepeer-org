@@ -2,12 +2,13 @@
 import { jsx, Link as A, Text } from "theme-ui";
 import Link from "next/link";
 import { LinkProps } from "lib/types/link-props";
+import { ReactNode, FC } from "react";
 
 type Category = { label: string; value: string };
 
 export type Question = {
   question: string;
-  answer: React.ReactNode;
+  answer: ReactNode;
   category: Category;
 };
 
@@ -34,7 +35,7 @@ const categories: Category[] = [
   },
 ];
 
-const AnswerLink: React.FC<LinkProps> = ({ label, href, asPath, isExternal }) =>
+const AnswerLink: FC<LinkProps> = ({ label, href, asPath, isExternal }) =>
   isExternal ? (
     <A variant="accent" sx={{ fontWeight: 400 }} href={href} target="_blank">
       {label}

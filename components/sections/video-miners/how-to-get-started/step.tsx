@@ -1,9 +1,9 @@
 import { Flex, Text, Box } from "theme-ui";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, ReactNode } from "react";
 
 export type HowToGetStartedStepProps = {
   index?: number;
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
   isLast?: boolean;
 };

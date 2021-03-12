@@ -3,41 +3,35 @@ import SectionLayout from "components/layouts/section";
 import StatsGrid from "components/layouts/stats-grid";
 import { nFormatter } from "lib/document-helpers";
 
-const LetTheNumbersTalkSection = ({ totalVolume }) => {
+const LetTheNumbersTalkSection = ({
+  title,
+  subtitle,
+  totalVolume,
+  label1,
+  label2,
+  label3,
+}) => {
   const stats: StatProps[] = [
     {
       title: "45",
-      label: (
-        <>
-          Total active <br /> nodes
-        </>
-      ),
+      label: label1,
     },
     {
       title: `${nFormatter(totalVolume, 1)} USD`,
-      label: (
-        <>
-          Total <br /> fees earned
-        </>
-      ),
+      label: label2,
       color: "gradient",
     },
 
     {
       title: "Free",
-      label: (
-        <>
-          Cost to activate <br />
-          your node
-        </>
-      ),
+      label: label3,
     },
   ];
 
   return (
     <SectionLayout
-      title="The Numbers"
-      subtitle="The capacity on Livepeer's network represents access to 70,000+ GPUs, or enough to encode all the realtime video streaming through Twitch, Facebook, and Youtube combined."
+      title={title}
+      subtitle={subtitle}
       pushSx={{ py: ["80px", null, null, "160px"] }}>
       <StatsGrid stats={stats} />
     </SectionLayout>
